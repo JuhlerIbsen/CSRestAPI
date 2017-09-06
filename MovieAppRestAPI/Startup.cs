@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MovieAppBLL;
+using MovieAppEntity.Movie;
 
 namespace MovieAppRestAPI
 {
@@ -31,10 +33,43 @@ namespace MovieAppRestAPI
         {
             if (env.IsDevelopment())
             {
+                UseMockData();
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseMvc();
+        }
+
+        private void UseMockData()
+        {
+            var bllFacade = new BLLFacade();
+
+            Random rand = new Random();
+
+            bllFacade.MovieService.Add(new Movie
+            {
+                Title = "Michael in the woods.",
+                Duration = rand.Next(120, 3600 * 5)
+            });
+
+            bllFacade.MovieService.Add(new Movie
+            {
+                Title = "Dude where's Michael?",
+                Duration = rand.Next(120, 3600 * 5)
+            });
+
+            bllFacade.MovieService.Add(new Movie
+            {
+                Title = "Michael the almighty.",
+                Duration = rand.Next(120, 3600 * 5)
+            });
+
+            bllFacade.MovieService.Add(new Movie
+            {
+                Title = "The Michaelism.",
+                Duration = rand.Next(120, 3600 * 5)
+            });
+
         }
     }
 }
