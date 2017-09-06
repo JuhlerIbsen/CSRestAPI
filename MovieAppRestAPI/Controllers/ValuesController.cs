@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MovieAppBLL;
+using MovieAppEntity.Movie;
 
 namespace MovieAppRestAPI.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -25,7 +28,7 @@ namespace MovieAppRestAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Movie movie)
         {
         }
 
