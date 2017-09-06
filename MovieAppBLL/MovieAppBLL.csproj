@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>MovieAppBLL</AssemblyName>
+    <RootNamespace>MovieAppBLL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MovieAppDAL\MovieAppDAL.csproj" />
+    <ProjectReference Include="..\MovieAppEntity\MovieAppEntity.csproj" />
+  </ItemGroup>
+
+</Project>

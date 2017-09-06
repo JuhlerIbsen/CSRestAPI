@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>MovieAppUI</AssemblyName>
+    <RootNamespace>MovieAppUI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MovieAppBLL\MovieAppBLL.csproj" />
+    <ProjectReference Include="..\MovieAppEntity\MovieAppEntity.csproj" />
+  </ItemGroup>
+
+</Project>

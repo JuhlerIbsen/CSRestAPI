@@ -1,0 +1,17 @@
+﻿using Microsoft.EntityFrameworkCore;
+using MovieAppEntity.Movie;
+
+namespace MovieAppDAL.Context
+{
+    internal class InMemoryContext : DbContext
+    {
+        private static readonly DbContextOptions<InMemoryContext> options =
+            new DbContextOptionsBuilder<InMemoryContext>().UseInMemoryDatabase("VideoDB").Options;
+
+        public InMemoryContext() : base(options)
+        {
+        }
+
+        public DbSet<Movie> Movies { get; set; }
+    }
+}
