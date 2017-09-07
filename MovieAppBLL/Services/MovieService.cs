@@ -74,8 +74,6 @@ namespace MovieAppBLL.Services
                 {
                     movieFromDb.Title = movie.Title;
                     movieFromDb.Duration = movie.Duration;
-                    movieFromDb.Extention = movie.Extention;
-                    movieFromDb.MovieGenre = movie.MovieGenre;
 
                     unitOfWork.Complete();
                 }

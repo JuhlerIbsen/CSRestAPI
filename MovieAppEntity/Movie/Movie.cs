@@ -2,22 +2,6 @@
 {
     public class Movie
     {
-        public enum FileType
-        {
-            Mp4,
-            Mkv,
-            Avi
-        }
-
-        // Enums should probably not be in the same class as the entity.
-        // Did it anyway.. (Mwhaha)
-        public enum Genre
-        {
-            NoGenre,
-            Comedy,
-            Horror,
-            Romantique
-        }
 
         private static int _id;
 
@@ -33,8 +17,6 @@
 
         public int Id { get; set; }
         public string Title { get; set; }
-        public FileType Extention { get; set; }
-        public Genre MovieGenre { get; set; }
         public long Duration { get; set; }
     }
 }
