@@ -7,7 +7,9 @@ namespace MovieAppDAL.Repositorys
 {
     internal class MovieRepositoryEFMemory : IRepository<Movie>
     {
+        
         private readonly InMemoryContext _context;
+        private static int _id = 1;
 
         public MovieRepositoryEFMemory(InMemoryContext context)
         {
@@ -17,6 +19,7 @@ namespace MovieAppDAL.Repositorys
 
         public Movie Add(Movie movie)
         {
+            movie.Id = _id ++;
             _context.Movies.Add(movie);
             return movie;
         }
