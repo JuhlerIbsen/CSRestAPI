@@ -5,7 +5,7 @@ We are told to replace the ConsoleUI with a RestAPI, that should handle c.r.u.d 
 
 | API           | Description   | C.R.U.D   |
 | ------------- |:-------------:| -----: |
-| POST   | Sumbits Data         | Create |
+| POST   | Submits Data         | Create |
 | GET    | Requests Data        | Read   |
 | PUT    | Updates Data         | Update |
 | DELETE | Deletes Data         | Delete |
