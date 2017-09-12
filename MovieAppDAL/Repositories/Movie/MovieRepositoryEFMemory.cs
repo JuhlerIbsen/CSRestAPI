@@ -31,12 +31,12 @@ namespace MovieAppDAL.Repositories.Movie
 
         public List<Entities.Movie.Movie> ListAll()
         {
-            return _context.Movies.Include(movie => movie.Genre).ToList();
+            return _context.Movies.Include(movie => movie.Genres).ToList();
         }
 
         public Entities.Movie.Movie FindById(int movieId)
         {
-            return _context.Movies.FirstOrDefault(movie => movie.Id == movieId);
+            return _context.Movies.Include(movie => movie.Genres).FirstOrDefault(movie => movie.Id == movieId);
         }
 
         public Entities.Movie.Movie Delete(int movieId)

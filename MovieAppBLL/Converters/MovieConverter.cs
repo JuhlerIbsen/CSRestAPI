@@ -9,8 +9,7 @@ namespace MovieAppBLL.Converters
 {
     class MovieConverter
     {
-
-        GenreConverter genreConverter = new GenreConverter();
+        private readonly GenreConverter _genreConverter = new GenreConverter();
 
         internal MovieBO Convert(Movie movie)
         {
@@ -25,7 +24,7 @@ namespace MovieAppBLL.Converters
                 Title = movie.Title,
                 Duration = movie.Duration,
                 PricePrDay = movie.PricePrDay,
-                Genres = (movie.Genres.Select(genreConverter.Convert).ToList())
+                Genres = (movie.Genres.Select(_genreConverter.Convert).ToList())
             };
         }
 
@@ -43,7 +42,7 @@ namespace MovieAppBLL.Converters
                 Title = movieBo.Title,
                 Duration = movieBo.Duration,
                 PricePrDay = movieBo.PricePrDay,
-                Genres = (movieBo.Genres.Select(genreConverter.Convert).ToList())
+                Genres = (movieBo.Genres.Select(_genreConverter.Convert).ToList())
                 
             };
         }
