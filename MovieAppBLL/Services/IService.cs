@@ -11,6 +11,6 @@ namespace MovieAppBLL.Services
         List<T> ListAll();
         T FindById(int id);
         T Update(T type);
-        Movie Delete(int id);
+        T Delete(int id);
     }
 }

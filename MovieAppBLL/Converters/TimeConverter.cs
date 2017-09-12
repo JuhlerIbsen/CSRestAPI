@@ -8,7 +8,7 @@
         /// </summary>
         /// <param name="duration">Seconds to convert.</param>
         /// <returns>String of hours, minutes and seconds.</returns>
-        public static string GetMovieDuration(long duration)
+        public static string ConvertSeconds(long duration)
         {
             var second = string.Format("{0}", (duration % 60).ToString("00"));
             var minute = string.Format("{0}", (duration / 60 % 60).ToString("00"));

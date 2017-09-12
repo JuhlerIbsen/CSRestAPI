@@ -5,9 +5,9 @@ using MovieAppEntity.Movie;
 
 namespace MovieAppBLL.Services
 {
-    internal class MovieService : IService<Movie>
+    internal class MovieService : IService<MovieAppEntity.Movie.Movie>
     {
-        private readonly DALFacade dalFacade;
+        private readonly DALFacade _dalFacade;
 
         /// <summary>
         ///     MovieService Constructor.
@@ -15,7 +15,7 @@ namespace MovieAppBLL.Services
         /// <param name="dalFacade">facade to use in this instance.</param>
         public MovieService(DALFacade dalFacade)
         {
-            this.dalFacade = dalFacade;
+            _dalFacade = dalFacade;
         }
 
         /// <summary>
@@ -23,9 +23,9 @@ namespace MovieAppBLL.Services
         /// </summary>
         /// <param name="movie">movie to add into the database.</param>
         /// <returns>the movie that has been added to the database.</returns>
-        public Movie Add(Movie movie)
+        public MovieAppEntity.Movie.Movie Add(MovieAppEntity.Movie.Movie movie)
         {
-            using (var unitOfWork = dalFacade.UnitOfWork)
+            using (var unitOfWork = _dalFacade.UnitOfWork)
             {
                 var newMovie = unitOfWork.MovieRepository.Add(movie);
                 unitOfWork.Complete();
@@ -38,9 +38,9 @@ namespace MovieAppBLL.Services
         ///     Return a list of all movies.
         /// </summary>
         /// <returns>All movies in the database.</returns>
-        public List<Movie> ListAll()
+        public List<MovieAppEntity.Movie.Movie> ListAll()
         {
-            using (var unitOfWork = dalFacade.UnitOfWork)
+            using (var unitOfWork = _dalFacade.UnitOfWork)
             {
                 return unitOfWork.MovieRepository.ListAll();
             }
@@ -51,9 +51,9 @@ namespace MovieAppBLL.Services
         /// </summary>
         /// <param name="id">id of the movie we want to find.</param>
         /// <returns>movie that was found.</returns>
-        public Movie FindById(int movieId)
+        public MovieAppEntity.Movie.Movie FindById(int movieId)
         {
-            using (var unitOfWork = dalFacade.UnitOfWork)
+            using (var unitOfWork = _dalFacade.UnitOfWork)
             {
                 return unitOfWork.MovieRepository.FindById(movieId);
             }
@@ -64,15 +64,16 @@ namespace MovieAppBLL.Services
         /// </summary>
         /// <param name="movie">The movie to update.</param>
         /// <returns>Updated version of movie.</returns>
-        public Movie Update(Movie movie)
+        public MovieAppEntity.Movie.Movie Update(MovieAppEntity.Movie.Movie movie)
         {
-            using (var unitOfWork = dalFacade.UnitOfWork)
+            using (var unitOfWork = _dalFacade.UnitOfWork)
             {
                 var movieFromDb = unitOfWork.MovieRepository.FindById(movie.Id);
 
                 if (movieFromDb != null)
                 {
                     movieFromDb.Title = movie.Title;
+                    movieFromDb.PricePrDay = movie.PricePrDay;
                     movieFromDb.Duration = movie.Duration;
 
                     unitOfWork.Complete();
@@ -91,9 +92,9 @@ namespace MovieAppBLL.Services
         /// </summary>
         /// <param name="movieId">the id of the movie to delete.</param>
         /// <returns>checks if the movie was deleted succesfully</returns>
-        public Movie Delete(int movieId)
+        public MovieAppEntity.Movie.Movie Delete(int movieId)
         {
-            using (var unitOfWork = dalFacade.UnitOfWork)
+            using (var unitOfWork = _dalFacade.UnitOfWork)
             {
                 var newMovie = unitOfWork.MovieRepository.Delete(movieId);
                 unitOfWork.Complete();

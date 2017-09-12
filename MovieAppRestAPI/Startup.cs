@@ -44,30 +44,18 @@ namespace MovieAppRestAPI
         {
             var bllFacade = new BLLFacade();
 
-            Random rand = new Random();
+            var rand = new Random();
 
-            bllFacade.MovieService.Add(new Movie
-            {
-                Title = "Michael in the woods.",
-                Duration = rand.Next(120, 3600 * 5)
-            });
-
-            bllFacade.MovieService.Add(new Movie
-            {
-                Title = "Dude where's Michael?",
-                Duration = rand.Next(120, 3600 * 5)
-            });
-
-            bllFacade.MovieService.Add(new Movie
-            {
-                Title = "Michael the almighty.",
-                Duration = rand.Next(120, 3600 * 5)
-            });
-
-            bllFacade.MovieService.Add(new Movie
+            var movie = bllFacade.MovieService.Add(new Movie
             {
                 Title = "The Michaelism.",
+                PricePrDay = 749.95,
                 Duration = rand.Next(120, 3600 * 5)
+            });
+
+            bllFacade.GenreService.Add(new Genre
+            {
+                Name = "Horror",
             });
 
         }

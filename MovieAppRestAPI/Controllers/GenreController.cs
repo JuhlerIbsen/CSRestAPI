@@ -8,54 +8,58 @@ namespace MovieAppRestAPI.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class MovieController : Controller
-    {   
-        private BLLFacade _bllFacade = new BLLFacade();
+    public class GenreController : Controller
+    {
 
-        // GET: api/Movie
+        private readonly BLLFacade _bllFacade = new BLLFacade();
+
+        // GET: api/Genre
         [HttpGet]
-        public IEnumerable<Movie> Get()
+        public IEnumerable<Genre> Get()
         {
-            return _bllFacade.MovieService.ListAll();
+            return _bllFacade.GenreService.ListAll();
         }
 
-        // GET: api/Movie/5
-        [HttpGet("{id}", Name = "GetMovie")]
-        public Movie Get(int id)
+        // GET: api/Genre/5
+        [HttpGet("{id}", Name = "GetGenre")]
+        public Genre Get(int id)
         {
-            return _bllFacade.MovieService.FindById(id);
+             return _bllFacade.GenreService.FindById(id);
         }
         
-        // POST: api/Movie
+        // POST: api/Genre
         [HttpPost]
-        public IActionResult Post([FromBody]Movie movie)
+        public IActionResult Post([FromBody]Genre genre)
         {
+
             if (!ModelState.IsValid)
             {
                 return StatusCode(406, ModelState);
             }
 
-            return Ok(_bllFacade.MovieService.Add(movie));
+            return Ok(_bllFacade.GenreService.Add(genre));
+
         }
         
-        // PUT: api/Movie/5
+        // PUT: api/Genre/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Movie movie)
+        public IActionResult Put(int id, [FromBody]Genre genre)
         {
+
 
             if (!ModelState.IsValid)
             {
                 return StatusCode(406, ModelState);
             }
 
-            if (movie.Id != id)
+            if (genre.Id != id)
             {
-                return BadRequest("Id in the url and in your json object doesn't match.");
+                return StatusCode(409, "Genre id and the url id doesn't match.");
             }
 
             try
             {
-                return Ok(_bllFacade.MovieService.Update(movie));
+                return Ok(_bllFacade.GenreService.Update(genre));
             }
             catch (InvalidOperationException ex)
             {
@@ -65,9 +69,9 @@ namespace MovieAppRestAPI.Controllers
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public void Delete(int id)
         {
-            return Ok(_bllFacade.MovieService.Delete(id));
+            _bllFacade.GenreService.Delete(id);
         }
     }
 }

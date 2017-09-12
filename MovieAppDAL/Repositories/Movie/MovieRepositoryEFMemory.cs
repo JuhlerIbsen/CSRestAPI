@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using MovieAppDAL.Context;
-using MovieAppEntity.Movie;
 
-namespace MovieAppDAL.Repositorys
+namespace MovieAppDAL.Repositories.Movie
 {
-    internal class MovieRepositoryEFMemory : IRepository<Movie>
+    internal class MovieRepositoryEFMemory : IRepository<MovieAppEntity.Movie.Movie>
     {
         
         private readonly InMemoryContext _context;
@@ -17,24 +17,24 @@ namespace MovieAppDAL.Repositorys
         }
 
 
-        public Movie Add(Movie movie)
+        public MovieAppEntity.Movie.Movie Add(MovieAppEntity.Movie.Movie movie)
         {
             movie.Id = _id ++;
             _context.Movies.Add(movie);
             return movie;
         }
 
-        public List<Movie> ListAll()
+        public List<MovieAppEntity.Movie.Movie> ListAll()
         {
             return _context.Movies.ToList();
         }
 
-        public Movie FindById(int movieId)
+        public MovieAppEntity.Movie.Movie FindById(int movieId)
         {
             return _context.Movies.FirstOrDefault(movie => movie.Id == movieId);
         }
 
-        public Movie Delete(int movieId)
+        public MovieAppEntity.Movie.Movie Delete(int movieId)
         {
             var movie = FindById(movieId);
             _context.Movies.Remove(movie);
