@@ -1,6 +1,6 @@
 ﻿using System;
+using MovieAppDAL.Entities.Movie;
 using MovieAppDAL.Repositories;
-using MovieAppEntity.Movie;
 
 namespace MovieAppDAL.UnitOfWork
 {

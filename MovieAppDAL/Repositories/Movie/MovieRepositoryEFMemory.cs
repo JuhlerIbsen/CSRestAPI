@@ -5,7 +5,7 @@ using MovieAppDAL.Context;
 
 namespace MovieAppDAL.Repositories.Movie
 {
-    internal class MovieRepositoryEFMemory : IRepository<MovieAppEntity.Movie.Movie>
+    internal class MovieRepositoryEFMemory : IRepository<Entities.Movie.Movie>
     {
         
         private readonly InMemoryContext _context;
@@ -17,24 +17,24 @@ namespace MovieAppDAL.Repositories.Movie
         }
 
 
-        public MovieAppEntity.Movie.Movie Add(MovieAppEntity.Movie.Movie movie)
+        public Entities.Movie.Movie Add(Entities.Movie.Movie movie)
         {
             movie.Id = _id ++;
             _context.Movies.Add(movie);
             return movie;
         }
 
-        public List<MovieAppEntity.Movie.Movie> ListAll()
+        public List<Entities.Movie.Movie> ListAll()
         {
             return _context.Movies.ToList();
         }
 
-        public MovieAppEntity.Movie.Movie FindById(int movieId)
+        public Entities.Movie.Movie FindById(int movieId)
         {
             return _context.Movies.FirstOrDefault(movie => movie.Id == movieId);
         }
 
-        public MovieAppEntity.Movie.Movie Delete(int movieId)
+        public Entities.Movie.Movie Delete(int movieId)
         {
             var movie = FindById(movieId);
             _context.Movies.Remove(movie);

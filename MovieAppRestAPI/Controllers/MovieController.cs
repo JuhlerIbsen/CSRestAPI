@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MovieAppBLL;
-using MovieAppEntity.Movie;
+using MovieAppBLL.Entities.Movie;
+using MovieAppDAL.Entities.Movie;
 
 namespace MovieAppRestAPI.Controllers
 {
@@ -14,21 +15,21 @@ namespace MovieAppRestAPI.Controllers
 
         // GET: api/Movie
         [HttpGet]
-        public IEnumerable<Movie> Get()
+        public IEnumerable<MovieBO> Get()
         {
             return _bllFacade.MovieService.ListAll();
         }
 
         // GET: api/Movie/5
         [HttpGet("{id}", Name = "GetMovie")]
-        public Movie Get(int id)
+        public MovieBO Get(int id)
         {
             return _bllFacade.MovieService.FindById(id);
         }
         
         // POST: api/Movie
         [HttpPost]
-        public IActionResult Post([FromBody]Movie movie)
+        public IActionResult Post([FromBody]MovieBO movie)
         {
             if (!ModelState.IsValid)
             {
@@ -40,7 +41,7 @@ namespace MovieAppRestAPI.Controllers
         
         // PUT: api/Movie/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Movie movie)
+        public IActionResult Put(int id, [FromBody]MovieBO movie)
         {
 
             if (!ModelState.IsValid)

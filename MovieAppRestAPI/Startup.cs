@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MovieAppBLL;
-using MovieAppEntity.Movie;
+using MovieAppBLL.Entities.Movie;
 
 namespace MovieAppRestAPI
 {
@@ -46,14 +41,14 @@ namespace MovieAppRestAPI
 
             var rand = new Random();
 
-            var movie = bllFacade.MovieService.Add(new Movie
+            var movie = bllFacade.MovieService.Add(new MovieBO
             {
                 Title = "The Michaelism.",
                 PricePrDay = 749.95,
                 Duration = rand.Next(120, 3600 * 5)
             });
 
-            bllFacade.GenreService.Add(new Genre
+            bllFacade.GenreService.Add(new GenreBO()
             {
                 Name = "Horror",
             });

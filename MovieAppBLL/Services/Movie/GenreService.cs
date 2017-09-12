@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using MovieAppBLL.Converters;
 using MovieAppDAL;
-using MovieAppEntity.Movie;
+using GenreBO = MovieAppBLL.Entities.Movie.GenreBO;
 
 namespace MovieAppBLL.Services.Movie
 {
-    class GenreService : IService<Genre>
+    class GenreService : IService<GenreBO>
     {
 
+        private readonly GenreConverter _genreConverter = new GenreConverter();
         private readonly DALFacade _dalFacade;
 
         public GenreService(DALFacade dalFacade)
@@ -16,34 +18,34 @@ namespace MovieAppBLL.Services.Movie
             _dalFacade = dalFacade;
         }
 
-        public Genre Add(Genre genre)
+        public GenreBO Add(GenreBO genre)
         {
             using (var unitOfWork = _dalFacade.UnitOfWork)
             {
-                var newGenre = unitOfWork.GenreRepository.Add(genre);
+                var newGenre = unitOfWork.GenreRepository.Add(_genreConverter.Convert(genre));
                 unitOfWork.Complete();
                 unitOfWork.Dispose();
-                return newGenre;
+                return _genreConverter.Convert(newGenre);
             }
         }
 
-        public List<Genre> ListAll()
+        public List<GenreBO> ListAll()
         {
             using (var unitOfWork = _dalFacade.UnitOfWork)
             {
-                return unitOfWork.GenreRepository.ListAll();
+                return unitOfWork.GenreRepository.ListAll().ConvertAll(_genreConverter.Convert).ToList();
             }
         }
 
-        public Genre FindById(int id)
+        public GenreBO FindById(int id)
         {
             using (var unitOfWork = _dalFacade.UnitOfWork)
             {
-                return unitOfWork.GenreRepository.FindById(id);
+                return _genreConverter.Convert(unitOfWork.GenreRepository.FindById(id));
             }
         }
 
-        public Genre Update(Genre genre)
+        public GenreBO Update(GenreBO genre)
         {
             using (var unitOfWork = _dalFacade.UnitOfWork)
             {
@@ -60,18 +62,18 @@ namespace MovieAppBLL.Services.Movie
                     throw new InvalidOperationException("Movie not found.");
                 }
 
-                return genreFromDb;
+                return _genreConverter.Convert(genreFromDb);
 
             }
         }
 
-        public Genre Delete(int id)
+        public GenreBO Delete(int id)
         {
             using (var unitOfWork = _dalFacade.UnitOfWork)
             {
                 var newGenre = unitOfWork.GenreRepository.Delete(id);
                 unitOfWork.Complete();
-                return newGenre;
+                return _genreConverter.Convert(newGenre);
             }
         }
     }

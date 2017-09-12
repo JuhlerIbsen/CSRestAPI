@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MovieAppEntity.Movie;
+using MovieAppDAL.Entities.Movie;
 
 namespace MovieAppDAL.Context
 {

@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieAppDAL\MovieAppDAL.csproj" />
-    <ProjectReference Include="..\MovieAppEntity\MovieAppEntity.csproj" />
   </ItemGroup>
 
 </Project>

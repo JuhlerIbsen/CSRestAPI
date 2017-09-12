@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MovieAppDAL.Context;
-using MovieAppEntity.Movie;
+using MovieAppDAL.Entities.Movie;
 
 namespace MovieAppDAL.Repositories.Movie
 {

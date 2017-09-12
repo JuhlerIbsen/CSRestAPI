@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieAppBLL\MovieAppBLL.csproj" />
-    <ProjectReference Include="..\MovieAppEntity\MovieAppEntity.csproj" />
   </ItemGroup>
 
 </Project>

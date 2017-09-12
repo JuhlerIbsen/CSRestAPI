@@ -1,7 +1,7 @@
 ﻿using MovieAppDAL.Context;
+using MovieAppDAL.Entities.Movie;
 using MovieAppDAL.Repositories;
 using MovieAppDAL.Repositories.Movie;
-using MovieAppEntity.Movie;
 
 namespace MovieAppDAL.UnitOfWork
 {
