@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieAppBLL.Entities.Movie
 {
@@ -17,6 +18,9 @@ namespace MovieAppBLL.Entities.Movie
         [Required]
         [Range(120, long.MaxValue)]
         public long Duration { get; set; }
+
+        public IEnumerable<GenreBO> Genres { get; set; }
+
 
     }
 }

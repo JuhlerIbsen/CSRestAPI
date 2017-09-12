@@ -12,6 +12,17 @@ namespace MovieAppDAL.Context
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+
+            modelBuilder.Entity<Movie>()
+                .HasOne(movie => movie.Genre)
+                .WithMany(genre => genre.Movies)
+                .HasForeignKey(movie => movie.Id);
+
+        }
+
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
     }

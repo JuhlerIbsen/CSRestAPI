@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MovieAppBLL.Entities.Movie;
 using MovieAppDAL.Entities.Movie;
@@ -27,6 +28,9 @@ namespace MovieAppBLL.Converters
 
         internal Movie Convert(MovieBO movieBo)
         {
+
+            var genreConverter = new GenreConverter();
+
             if (movieBo == null)
             {
                 return null;
@@ -37,7 +41,9 @@ namespace MovieAppBLL.Converters
                 Id = movieBo.Id,
                 Title = movieBo.Title,
                 Duration = movieBo.Duration,
-                PricePrDay = movieBo.PricePrDay
+                PricePrDay = movieBo.PricePrDay,
+                Genres = (movieBo.Genres.ToList().ConvertAll(genreConverter.Convert))
+                
             };
         }
 

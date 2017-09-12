@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -45,7 +46,14 @@ namespace MovieAppRestAPI
             {
                 Title = "The Michaelism.",
                 PricePrDay = 749.95,
-                Duration = rand.Next(120, 3600 * 5)
+                Duration = rand.Next(120, 3600 * 5),
+                Genres = new List<GenreBO>
+                {
+                    new GenreBO
+                    {
+                        Name = "Cake"
+                    }
+                }
             });
 
             bllFacade.GenreService.Add(new GenreBO()
