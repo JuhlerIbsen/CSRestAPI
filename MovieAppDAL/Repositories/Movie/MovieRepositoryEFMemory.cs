@@ -19,6 +19,11 @@ namespace MovieAppDAL.Repositories.Movie
 
         public Entities.Movie.Movie Add(Entities.Movie.Movie movie)
         {
+            if (movie.Genres != null)
+            {
+                // _context.Entry(movie.Genres).State = EntityState.Unchanged; 
+            }
+
             movie.Id = _id ++;
             _context.Movies.Add(movie);
             return movie;
@@ -26,7 +31,7 @@ namespace MovieAppDAL.Repositories.Movie
 
         public List<Entities.Movie.Movie> ListAll()
         {
-            return _context.Movies.ToList();
+            return _context.Movies.Include(movie => movie.Genre).ToList();
         }
 
         public Entities.Movie.Movie FindById(int movieId)

@@ -12,9 +12,9 @@ namespace MovieAppDAL.Context
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
 
             modelBuilder.Entity<Movie>()
                 .HasOne(movie => movie.Genre)

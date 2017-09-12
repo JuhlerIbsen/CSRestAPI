@@ -10,6 +10,8 @@ namespace MovieAppBLL.Converters
     class MovieConverter
     {
 
+        GenreConverter genreConverter = new GenreConverter();
+
         internal MovieBO Convert(Movie movie)
         {
             if (movie == null)
@@ -22,14 +24,13 @@ namespace MovieAppBLL.Converters
                 Id = movie.Id,
                 Title = movie.Title,
                 Duration = movie.Duration,
-                PricePrDay = movie.PricePrDay
+                PricePrDay = movie.PricePrDay,
+                Genres = (movie.Genres.Select(genreConverter.Convert).ToList())
             };
         }
 
         internal Movie Convert(MovieBO movieBo)
         {
-
-            var genreConverter = new GenreConverter();
 
             if (movieBo == null)
             {
@@ -42,7 +43,7 @@ namespace MovieAppBLL.Converters
                 Title = movieBo.Title,
                 Duration = movieBo.Duration,
                 PricePrDay = movieBo.PricePrDay,
-                Genres = (movieBo.Genres.ToList().ConvertAll(genreConverter.Convert))
+                Genres = (movieBo.Genres.Select(genreConverter.Convert).ToList())
                 
             };
         }
