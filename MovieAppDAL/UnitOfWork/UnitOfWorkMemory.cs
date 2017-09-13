@@ -15,8 +15,8 @@ namespace MovieAppDAL.UnitOfWork
         public UnitOfWorkMemory()
         {
             _context = new InMemoryContext();
-            MovieRepository = new MovieRepositoryEFMemory(_context);
-            GenreRepository = new GenreRepositoryEFMemory(_context);
+            MovieRepository = new MovieRepository(_context);
+            GenreRepository = new GenreRepository(_context);
         }
 
         public void Dispose()

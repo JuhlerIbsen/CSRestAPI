@@ -7,13 +7,13 @@ using MovieAppDAL.Entities.Movie;
 
 namespace MovieAppDAL.Repositories.Movie
 {
-    class GenreRepositoryEFMemory : IRepository<Genre>
+    class GenreRepository : IRepository<Genre>
     {
 
         private readonly InMemoryContext _context;
         private static int _id = 1;
 
-        public GenreRepositoryEFMemory(InMemoryContext context)
+        public GenreRepository(InMemoryContext context)
         {
             _context = context;
         }

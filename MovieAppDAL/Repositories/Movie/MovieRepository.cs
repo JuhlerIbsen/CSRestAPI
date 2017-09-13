@@ -5,13 +5,13 @@ using MovieAppDAL.Context;
 
 namespace MovieAppDAL.Repositories.Movie
 {
-    internal class MovieRepositoryEFMemory : IRepository<Entities.Movie.Movie>
+    internal class MovieRepository : IRepository<Entities.Movie.Movie>
     {
         
         private readonly InMemoryContext _context;
         private static int _id = 1;
 
-        public MovieRepositoryEFMemory(InMemoryContext context)
+        public MovieRepository(InMemoryContext context)
         {
             _context = context;
         }
@@ -19,11 +19,6 @@ namespace MovieAppDAL.Repositories.Movie
 
         public Entities.Movie.Movie Add(Entities.Movie.Movie movie)
         {
-            if (movie.Genres != null)
-            {
-                // _context.Entry(movie.Genres).State = EntityState.Unchanged; 
-            }
-
             movie.Id = _id ++;
             _context.Movies.Add(movie);
             return movie;
