@@ -42,15 +42,15 @@ namespace MovieAppRestAPI
 
             var rand = new Random();
 
-            var horrorGenre = new GenreBO
+            var horrorGenre = bllFacade.GenreService.Add(new GenreBO
             {
                 Name = "Horror"
-            };
+            });
 
-            var comedyGenre = new GenreBO
+            var comedyGenre = bllFacade.GenreService.Add(new GenreBO
             {
                 Name = "Comedy"
-            };
+            });
             
             bllFacade.MovieService.Add(new MovieBO
             {
@@ -63,7 +63,6 @@ namespace MovieAppRestAPI
                     comedyGenre
                 }
             });
-
 
         }
     }

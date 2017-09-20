@@ -8,8 +8,7 @@ using MovieAppDAL.Entities.Movie;
 namespace MovieAppBLL.Converters
 {
     class MovieConverter
-    {
-        private readonly GenreConverter _genreConverter = new GenreConverter();
+    { 
 
         internal MovieBO Convert(Movie movie)
         {
@@ -24,7 +23,11 @@ namespace MovieAppBLL.Converters
                 Title = movie.Title,
                 Duration = movie.Duration,
                 PricePrDay = movie.PricePrDay,
-                Genres = (movie.Genres.Select(_genreConverter.Convert).ToList())
+                Genres = (movie.Genres.Select(g => new GenreBO
+                {
+                    Id = g.GenreId,
+                    Name = g.Genre?.Name
+                }).ToList())
             };
         }
 
@@ -42,7 +45,11 @@ namespace MovieAppBLL.Converters
                 Title = movieBo.Title,
                 Duration = movieBo.Duration,
                 PricePrDay = movieBo.PricePrDay,
-                Genres = (movieBo.Genres.Select(_genreConverter.Convert).ToList())
+                Genres = (movieBo.Genres.Select(g => new MovieGenre()
+                {
+                    GenreId = g.Id,
+                    MovieId = movieBo.Id
+                }).ToList())
                 
             };
         }

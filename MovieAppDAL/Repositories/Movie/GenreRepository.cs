@@ -27,7 +27,7 @@ namespace MovieAppDAL.Repositories.Movie
 
         public List<Genre> ListAll()
         {
-            return _context.Genres.ToList();
+            return _context.Genres.Include(m => m.Movies).ToList();
         }
 
         public Genre FindById(int id)

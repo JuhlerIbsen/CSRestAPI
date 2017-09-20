@@ -11,7 +11,7 @@ namespace MovieAppDAL.Entities.Movie
         [StringLength(40, MinimumLength = 3)]
         public string Name { get; set; }
 
-        public IEnumerable<Movie> Movies { get; set; }
+        public IEnumerable<MovieGenre> Movies { get; set; }
         public Movie Movie { get; set; }
 
     }

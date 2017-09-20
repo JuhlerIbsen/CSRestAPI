@@ -16,7 +16,6 @@ namespace MovieAppDAL.Repositories.Movie
             _context = context;
         }
 
-
         public Entities.Movie.Movie Add(Entities.Movie.Movie movie)
         {
             movie.Id = _id ++;
@@ -26,7 +25,7 @@ namespace MovieAppDAL.Repositories.Movie
 
         public List<Entities.Movie.Movie> ListAll()
         {
-            return _context.Movies.Include(movie => movie.Genres).ToList();
+            return _context.Movies.Include(movie => movie.Genres).ThenInclude(gc => gc.Genre).ToList();
         }
 
         public Entities.Movie.Movie FindById(int movieId)

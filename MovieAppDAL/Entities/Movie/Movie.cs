@@ -19,7 +19,7 @@ namespace MovieAppDAL.Entities.Movie
         [Range(120, long.MaxValue)]
         public long Duration { get; set; }
 
-        public IEnumerable<Genre> Genres { get; set; }
+        public IEnumerable<MovieGenre> Genres { get; set; }
         public Genre Genre { get; set; }
 
     }
