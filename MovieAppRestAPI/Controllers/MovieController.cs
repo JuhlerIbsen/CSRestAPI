@@ -11,7 +11,7 @@ namespace MovieAppRestAPI.Controllers
     [Route("api/[controller]")]
     public class MovieController : Controller
     {   
-        private BLLFacade _bllFacade = new BLLFacade();
+        private readonly BLLFacade _bllFacade = new BLLFacade();
 
         // GET: api/Movie
         [HttpGet]
@@ -31,12 +31,7 @@ namespace MovieAppRestAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]MovieBO movie)
         {
-            if (!ModelState.IsValid)
-            {
-                return StatusCode(406, ModelState);
-            }
-
-            return Ok(_bllFacade.MovieService.Add(movie));
+            return !ModelState.IsValid ? StatusCode(406, ModelState) : Ok(_bllFacade.MovieService.Add(movie));
         }
         
         // PUT: api/Movie/5
