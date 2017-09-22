@@ -44,12 +44,14 @@ namespace MovieAppRestAPI
 
             var horrorGenre = bllFacade.GenreService.Add(new GenreBO
             {
-                Name = "Horror"
+                Name = "Horror",
+                Movies = new List<MovieBO>()
             });
 
             var comedyGenre = bllFacade.GenreService.Add(new GenreBO
             {
-                Name = "Comedy"
+                Name = "Comedy",
+                Movies = new List<MovieBO>()
             });
             
             bllFacade.MovieService.Add(new MovieBO
@@ -61,6 +63,19 @@ namespace MovieAppRestAPI
                 {
                     horrorGenre,
                     comedyGenre
+                }
+            });
+
+            bllFacade.MovieService.Add(new MovieBO
+            {
+                Title = "The Michaelism.",
+                PricePrDay = 749.95,
+                Duration = rand.Next(120, 3600 * 5),
+                Genres = new List<GenreBO>
+                {
+                    horrorGenre,
+                    comedyGenre,
+                    horrorGenre
                 }
             });
 

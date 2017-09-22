@@ -25,12 +25,12 @@ namespace MovieAppDAL.Repositories.Movie
 
         public List<Entities.Movie.Movie> ListAll()
         {
-            return _context.Movies.Include(movie => movie.Genres).ThenInclude(gc => gc.Genre).ToList();
+            return _context.Movies.Include(movie => movie.Genres).ThenInclude(mg => mg.Genre).ToList();
         }
 
         public Entities.Movie.Movie FindById(int movieId)
         {
-            return _context.Movies.Include(movie => movie.Genres).FirstOrDefault(movie => movie.Id == movieId);
+            return _context.Movies.Include(movie => movie.Genres).ThenInclude(mg => mg.Genre).FirstOrDefault(movie => movie.Id == movieId);
         }
 
         public Entities.Movie.Movie Delete(int movieId)

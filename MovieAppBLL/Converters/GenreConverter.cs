@@ -1,4 +1,5 @@
-﻿using MovieAppBLL.Entities.Movie;
+﻿using System.Linq;
+using MovieAppBLL.Entities.Movie;
 using MovieAppDAL.Entities.Movie;
 
 namespace MovieAppBLL.Converters
@@ -11,11 +12,19 @@ namespace MovieAppBLL.Converters
             {
                 return null;
             }
-
+            
             return new GenreBO()
             {
                 Id = genre.Id,
-                Name = genre.Name
+                Name = genre.Name,
+                Movies = (genre.Movies?.Select(m => new MovieBO
+                {
+                  Id  = m.MovieId,
+                  Duration = m.Movie.Duration,
+                  PricePrDay = m.Movie.PricePrDay,
+                  Title = m.Movie?.Title
+
+                }).ToList())
             };
         }
 
@@ -26,10 +35,15 @@ namespace MovieAppBLL.Converters
                 return null;
             }
 
-            return new Genre
+            return new Genre()
             {
                 Id = genreBo.Id,
-                Name = genreBo.Name
+                Name = genreBo.Name,
+                Movies = (genreBo.Movies?.Select(m => new MovieGenre
+                {
+                 GenreId   = genreBo.Id,
+                 MovieId   = m.Id
+                }).ToList())
             };
         }
     }

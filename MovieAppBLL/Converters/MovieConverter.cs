@@ -23,7 +23,7 @@ namespace MovieAppBLL.Converters
                 Title = movie.Title,
                 Duration = movie.Duration,
                 PricePrDay = movie.PricePrDay,
-                Genres = (movie.Genres.Select(g => new GenreBO
+                Genres = (movie.Genres?.Select(g => new GenreBO
                 {
                     Id = g.GenreId,
                     Name = g.Genre?.Name
@@ -45,7 +45,7 @@ namespace MovieAppBLL.Converters
                 Title = movieBo.Title,
                 Duration = movieBo.Duration,
                 PricePrDay = movieBo.PricePrDay,
-                Genres = (movieBo.Genres.Select(g => new MovieGenre()
+                Genres = (movieBo.Genres?.Select(g => new MovieGenre()
                 {
                     GenreId = g.Id,
                     MovieId = movieBo.Id

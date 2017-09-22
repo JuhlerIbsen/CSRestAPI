@@ -21,6 +21,5 @@ namespace MovieAppDAL.Entities.Movie
 
         public IEnumerable<MovieGenre> Genres { get; set; }
         public Genre Genre { get; set; }
-
     }
 }
