@@ -11,7 +11,6 @@ namespace MovieAppDAL.Repositories.Movie
     {
 
         private readonly InMemoryContext _context;
-        private static int _id = 1;
 
         public GenreRepository(InMemoryContext context)
         {
@@ -20,7 +19,6 @@ namespace MovieAppDAL.Repositories.Movie
 
         public Genre Add(Genre genre)
         {
-            genre.Id = _id++;
             _context.Genres.Add(genre);
             return genre;
         }
